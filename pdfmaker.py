@@ -23,13 +23,19 @@ def convert_word_to_pdf(input_file, output_folder):
     if input_file.endswith('.docx'):
         pdf_name = input_file.replace('.docx', '.pdf')
     print(f"Opening word file: {input_file}")
-    doc = word.Documents.Open(input_file)
-    doc.SaveAs(pdf_name, FileFormat=17)  # formatType = 17 for pdf
-    doc.Close()
-    word.Quit()
-    print(f"Converted word file: {pdf_name}")
-    shutil.move(pdf_name, os.path.join(output_folder, os.path.basename(pdf_name)))
-    print(f"Moved Word file to: {os.path.join(output_folder, os.path.basename(pdf_name))}")
+    try:
+        doc = word.Documents.Open(input_file)
+        doc.SaveAs(pdf_name, FileFormat=17)  # formatType = 17 for pdf
+        doc.Close()
+    except Exception as e:
+        print(f"Error converting Word file {input_file}: {e}")
+    finally:
+        word.Quit()
+        print(f"Converted word file: {pdf_name}")
+        shutil.move(pdf_name, os.path.join(output_folder, os.path.basename(pdf_name)))
+        print(f"Moved Word file to: {os.path.join(output_folder, os.path.basename(pdf_name))}")
+   
+      
 # Function to find PowerPoint files in a folder
 def find_ppt_files(folder):
     ppt_files = []
@@ -49,14 +55,17 @@ def convert_ppt_to_pdf(input_file, output_folder):
     if input_file.endswith('.pptx'):
         pdf_name = input_file.replace('.pptx', '.pdf')
     print(f"Opening PowerPoint file: {input_file}")
-    deck = powerpoint.Presentations.Open(input_file)
-    deck.SaveAs(pdf_name, 32)  # formatType = 32 for pdf
-    deck.Close()
-    powerpoint.Quit()
-    print(f"Converted PowerPoint file: {pdf_name}")
-    shutil.move(pdf_name, os.path.join(output_folder, os.path.basename(pdf_name)))
-    print(f"Moved PowerPoint file to: {os.path.join(output_folder, os.path.basename(pdf_name))}")
-
+    try:
+        deck = powerpoint.Presentations.Open(input_file)
+        deck.SaveAs(pdf_name, 32)  # formatType = 32 for pdf
+        deck.Close()
+    except Exception as e:
+        print(f"Error converting PowerPoint file {input_file}: {e}")
+    finally:
+        powerpoint.Quit()
+        print(f"Converted PowerPoint file: {pdf_name}")
+        shutil.move(pdf_name, os.path.join(output_folder, os.path.basename(pdf_name)))
+        print(f"Moved PowerPoint file to: {os.path.join(output_folder, os.path.basename(pdf_name))}")
 # Function to merge PDF files
 def merge_pdfs(pdf_files, output):
     merger = PdfMerger()
