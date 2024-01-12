@@ -1,7 +1,7 @@
 # EXAM PDF Maker
 EXAM PDF Maker is a Python application that converts PowerPoint and/or word files to PDF and merges them into a single PDF file.
 
-#### In case you don't want to install python, you can just run the .exe file on this rep 
+#### In case you don't want to install python, you can just run the .exe [HERE](https://github.com/dlopesa/EXAM-PDF-MAKER/blob/main/pdfmaker.exe)
 
 ## Features
 
