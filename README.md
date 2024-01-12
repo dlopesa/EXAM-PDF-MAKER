@@ -17,7 +17,7 @@ git clone https://github.com/dlopesa/EXAM-PDF-MAKER.git
 ```
 2. Navigate to the project directory:
 ```bash
-cd pdfmaker
+cd EXAM-PDF-MAKER
 ```
 3. Install the required Python packages:
 ```bash
